@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitki Hastalık Tespit Sistemi</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>🌿 Bitki Hastalık Tespit Sistemi</h1>
+
+        <p class="description">
+            Yaprak görseli yükleyerek hastalık analizi yapabilirsiniz.
+        </p>
+
+        <form method="POST" enctype="multipart/form-data">
+
+            <label for="file-upload" class="custom-file-upload">
+                Görsel Seç
+            </label>
+
+            <input id="file-upload" type="file" name="file" required>
+
+            <button type="submit">Analiz Et</button>
+
+        </form>
+
+        {% if image_path %}
+
+        <div class="result-box">
+
+            <img src="{{ image_path }}" alt="Yüklenen Görsel">
+
+            <h2>Analiz Sonucu</h2>
+
+            <p><strong>Bitki Türü:</strong> {{ plant_type }}</p>
+
+            <p><strong>Hastalık Durumu:</strong> {{ disease_status }}</p>
+
+            <p><strong>Tahmin Edilen Sınıf:</strong> {{ disease_name }}</p>
+
+            <p><strong>Güven Oranı:</strong> %{{ confidence }}</p>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</body>
+</html>
